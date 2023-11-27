@@ -1,0 +1,1 @@
+java -jar target/CellExercise-0.0.1-SNAPSHOT.jar
