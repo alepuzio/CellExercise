@@ -2,9 +2,6 @@ package net.alepuzio.cellexercise.persistence.entity;
 
 import java.sql.Timestamp;
 
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,6 +37,8 @@ public class Cell {
 	@JoinColumn(name = "id")
 	@OneToOne(cascade = CascadeType.ALL)
 	private CellWithPower cellWithPower;
+
+
 
 	@JoinColumn(name = "id")
 	@OneToOne(cascade = CascadeType.ALL)
@@ -102,7 +101,9 @@ public class Cell {
 	}
 
 	public Cell(Long id, String name, Double latitude, Double longitude, Timestamp timestamp,
-			CellWithPower cellWithPower, CellWithRadius cellWithRadius) {
+			CellWithPower cellWithPower
+			, CellWithRadius cellWithRadius
+			) {
 		super();
 		this.id = id;
 		this.name = name;
