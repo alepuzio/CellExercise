@@ -1,0 +1,14 @@
+{
+"PointAndThreshold":{
+  "RestPoint" :{
+  	"Point" :   {
+  	  	"longitude":"10",
+  		"latitude":"10" 
+	
+  	}
+  	}
+  	
+  }
+    	,"thresold":1
+  
+  }

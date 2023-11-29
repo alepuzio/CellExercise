@@ -10,14 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import net.alepuzio.cellexercise.functional.CellEvent;
 import net.alepuzio.cellexercise.functional.advanced.SetCellEvent;
 import net.alepuzio.cellexercise.functional.advanced.SetCells;
 import net.alepuzio.cellexercise.functional.cell.MeasureForce;
-import net.alepuzio.cellexercise.functional.position.Point;
 import net.alepuzio.cellexercise.persistence.CellService;
+import net.alepuzio.cellexercise.transmission.PointAndThreshold;
 
 @Controller
 public class CellController {
@@ -45,18 +44,23 @@ public class CellController {
 		
 		@PutMapping("/cellsStrongerThan")
 		public ResponseEntity<List<MeasureForce>> cellsStrongerThan(
-				@RequestParam Double thresold
-				, @RequestBody Point point ){
+				@RequestBody PointAndThreshold pointAndThreshold){
 			 ResponseEntity<List<MeasureForce>> res = null;
+			 logger.info(">cellsStrongerThan:"+pointAndThreshold);
 			 try {
 				List<MeasureForce> list = this.cellService.readAll();
-				SetCells setCell = new SetCells(list, point);
-				res = ResponseEntity.ok(setCell.filterStrongerCellsThan(thresold));
+				 logger.info("list:"+list);
+				SetCells setCell = new SetCells(list, pointAndThreshold.getPoint().getPoint());
+				res = ResponseEntity.ok(setCell.filterStrongerCellsThan(Double.parseDouble(pointAndThreshold.getThreshold())));
 			} catch (Exception e) {
-				logger.fatal("cellsStrongerThan("+ thresold + ", " + point+"):"+e.getMessage());
+				logger.fatal("cellsStrongerThan("+ pointAndThreshold.getPoint() + ", " + pointAndThreshold.getThreshold()+"):"+e.getMessage());
 			}
+			 logger.info("<cellsStrongerThan:"+res);
+
 			return res;
 		}
+		
+		
 		@GetMapping("/")
 		public ResponseEntity<List<CellEvent>> hello(){
 			logger.info("hello");
@@ -64,7 +68,14 @@ public class CellController {
 		
 			
 		}
-		
+		@PutMapping("/testrest")
+		public ResponseEntity<List<MeasureForce>> testrest(
+				@RequestBody PointAndThreshold threshold){
+			 ResponseEntity<List<MeasureForce>> res = null;
+			 logger.info(">testrest:"+threshold);
+			
+			return res;
+		}
 		
 }
 

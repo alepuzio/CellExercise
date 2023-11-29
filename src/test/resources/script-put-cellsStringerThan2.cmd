@@ -1,0 +1,1 @@
+curl -i -H "Accept: application/json" -H "--header "Content-Type: application/json" -X PUT http://localhost:8081/cellsStrongerThan -d@data-put-cellsStringerThan.txt

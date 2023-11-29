@@ -1,0 +1,1 @@
+curl -vX PUT http://localhost:8081/cellsStrongerThan -i  -d@data\data-put-cellsStringerThan.json --header "Content-Type: application/json"

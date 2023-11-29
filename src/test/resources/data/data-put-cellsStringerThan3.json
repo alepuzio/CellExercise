@@ -1,0 +1,10 @@
+
+	{
+		"restPoint" :{
+			"point" :   {
+				"longitude":"10"
+				,"latitude":"10" 
+			} 
+		} 
+		,"threshold":"1" 
+	}

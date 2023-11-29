@@ -12,8 +12,8 @@ public class Point {
 		this.latitude = latitude;
 	}
 
-	public Point(double longitude, double latitude) {
-		this(new Longitude(longitude), new Latitude(latitude));
+	public Point(Double longitude, Double latitude) {
+		this(new Longitude(longitude.doubleValue()), new Latitude(latitude.doubleValue()));
 	}
 
 	public double calculateDistance(Point otherPoint) {
